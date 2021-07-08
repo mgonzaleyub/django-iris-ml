@@ -9,6 +9,8 @@
 
 {% if form.is_valid %}
 <p> The model predicted: <b>{{ prediction }}</b></p>
+<img src={{ prediction_img }} style="max-width:400px">
+
 {% endif %}
 
 {% endblock %}
