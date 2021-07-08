@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .forms import ModelForm
 import pickle
+from .models import Predictions
+
 
 # Create your views here.
 def predict_model(request):
@@ -33,6 +35,12 @@ def predict_model(request):
 
             prediction_name = prediction_dict[prediction]['name']
             prediction_img = prediction_dict[prediction]['img']
+
+            Predictions.objects.create(sepal_length=sepal_length,
+                            sepal_width=sepal_width,
+                            petal_length=petal_length,
+                            petal_width=petal_width,
+                            prediction=prediction_name)
 
             return render(request, 'home.html', {'form': form, 'prediction': prediction,
                                         'prediction_name': prediction_name,
